@@ -1,0 +1,31 @@
+font{
+    color: #218838; 
+    font-family :cursive;
+}
+.myForm{
+    display: block;
+    outline: 1em ;
+    -webkit-box-shadow: 3px -3px 40px 17px rgba(16, 16, 17, 0.2);
+    -moz-box-shadow: 3px -3px 40px 17px rgba(16, 16, 17, 0.2);
+    box-shadow: 3px -3px 40px 17px rgba(16, 16, 17, 0.2);
+    margin-top:20px;
+    padding: 15px;           
+    max-width:500px; 
+    margin:0 auto; 
+    }
+h1{
+    padding: 10px 0 20px 0;
+    text-align: center;
+}  
+img{
+    height:60px;
+    width:60px;
+    display:none; 
+    margin: 0 auto;
+} 
+p{
+    color:red;
+}
+#submitArea{
+    text-align: center;
+}
