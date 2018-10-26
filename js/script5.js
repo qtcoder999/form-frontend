@@ -2,7 +2,7 @@
 
 function init() {
     $.ajax({
-        url: 'http://localhost:4500/contactpoint',
+        url: 'http://localhost:1234/contactpoint',
 
         error: function () {
 
@@ -77,7 +77,7 @@ function testData(e) {
 
     //console.log(data);
     $.ajax({
-        url: 'http://localhost:4500/submitpoint',
+        url: 'http://localhost:1234/submitpoint',
         data: data,
         success: function (data) {
             //console.log(data);
