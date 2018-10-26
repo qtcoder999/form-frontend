@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        h1{
+          text-align: center;
+      }
+      </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Please Fill Your Details</h1>
+
+    <form id="mainForm" method="POST" name="Form">
+        <fieldset>
+            <legend>Personal information:</legend>
+            Name:<br>
+            <input type="text" id="name" name="name" placeholder="Enter Your Full Name">
+            <br>
+            Email:<br>
+            <input type="text" id="email" name="email" placeholder="Enter Your Email">
+            <br>
+            Password<br>
+            <input type="password" id="pass1" name="password">
+            <br>
+            Mobile Number<br>
+            <input type="text" id="Number" name="mobile" placeholder="Enter Your Mobile Number" onfocusout="mobileCheck()">
+            <br>
+            Address<br>
+            <textarea id="address" name="address"></textarea>
+            <br><br>
+            <input type="button" id="submit" value="Submit">
+        </fieldset>
+    </form>
+
+</body>
+
+<script>
+
+    document.getElementById("submit").addEventListener("click", sendData);
+
+
+
+    function init() {
+        $.ajax({
+            url: 'http://localhost:4500/contactpoint',
+
+            error: function () {
+
+            },
+
+            success: function (data) {
+                var json = JSON.parse(data);
+
+                document.getElementById("name").value = json.name;
+                document.getElementById("email").value = json.email;
+                document.getElementById("Number").value = json.mobile;
+                document.getElementById("address").value = json.address;
+            },
+            type: 'POST'
+        });
+
+    }
+
+
+    function mobileCheck() {
+        const mobile = document.getElementById('Number').value;
+        if (mobile.length > 10) {
+            alert('Please Enter 10 digit number');
+        }
+        else if (mobile.length < 10) {
+            alert('Please Enter 10 digit number');
+        }
+
+    }
+
+    var $inputs = $("#name, #email, #number, #address ");
+
+    $inputs.on('keyup', function () {
+        var flag = false;
+
+        $inputs.each(function () {
+            if (!$(this).val()) {
+                flag = true;
+            }
+        });
+
+        // $("#submit").prop("disabled", flag);
+
+    });
+
+    function sendData() {
+        var data = JSON.parse(JSON.stringify(jQuery('#mainForm').serializeArray()));
+        console.log(data);
+        var data1 = data;
+        console.log("Submitted");
+        $.ajax({
+            url: 'http://localhost:4500/submitpoint',
+            data: data1,
+            error: function () {
+
+            },
+
+            success: function (data) {
+                console.log(data);
+            },
+            type: 'POST'
+        });
+    }
+    init();
+
+</script>
+
+</html>
